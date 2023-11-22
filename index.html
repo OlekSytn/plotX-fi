@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>PlotX - Your entry to crypto</title>
+
+  <base href="/">
+
+  <meta name="color-scheme" content="light dark">
+  <meta name="viewport"
+    content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="msapplication-tap-highlight" content="no">
+  <link rel="icon" type="image/x-icon" href="assets/icon/favicon.ico">
+  <!-- add to homescreen for ios -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <link rel="dns-prefetch" href="//api-mumbai-v2.plotx.io">
+  <link rel="dns-prefetch" href="//fonts.googleapis.com">
+  <link rel="dns-prefetch" href="//assets.plotx.io">
+  <link rel="dns-prefetch" href="//app.plotx.io">
+  <link rel="dns-prefetch" href="//auth.magic.link">
+  <link rel="dns-prefetch" href="//api.magic.link">
+  <link rel="dns-prefetch" href="//polygon-mainnet.infura.io">
+  <script defer>
+    (function (h, o, t, j, a, r) {
+      h.hj = h.hj || function () {
+        (h.hj.q = h.hj.q || []).push(arguments)
+      };
+      h._hjSettings = {
+        hjid: 2989636,
+        hjsv: 6
+      };
+      a = o.getElementsByTagName('head')[0];
+      r = o.createElement('script');
+      r.async = 1;
+      r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
+      a.appendChild(r);
+    })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
+  </script>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#1976d2">
+  <script
+    src="https://rawcdn.githack.com/zarocknz/javascript-winwheel/229a47acc3d7fd941d72a3ba9e1649751fd10ed5/Winwheel.min.js">
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
+  <style>
+    @import"https://fonts.googleapis.com/icon?family=Material+Icons";
+    @import"https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap";
+    @import"https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;500;600;700&display=swap";
+    @charset "UTF-8";
+
+    html {
+      --ion-font-family: var(--ion-default-font)
+    }
+
+    body {
+      background: var(--ion-background-color)
+    }
+
+    @supports (padding-top: 20px) {
+      html {
+        --ion-safe-area-top: var(--ion-statusbar-padding)
+      }
+    }
+
+    @supports (padding-top: constant(safe-area-inset-top)) {
+      html {
+        --ion-safe-area-top: constant(safe-area-inset-top);
+        --ion-safe-area-bottom: constant(safe-area-inset-bottom);
+        --ion-safe-area-left: constant(safe-area-inset-left);
+        --ion-safe-area-right: constant(safe-area-inset-right)
+      }
+    }
+
+    @supports (padding-top: env(safe-area-inset-top)) {
+      html {
+        --ion-safe-area-top: env(safe-area-inset-top);
+        --ion-safe-area-bottom: env(safe-area-inset-bottom);
+        --ion-safe-area-left: env(safe-area-inset-left);
+        --ion-safe-area-right: env(safe-area-inset-right)
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+      -webkit-tap-highlight-color: transparent;
+      -webkit-touch-callout: none
+    }
+
+    html {
+      width: 100%;
+      height: 100%;
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%
+    }
+
+    html:not(.hydrated) body {
+      display: none
+    }
+
+    body {
+      -moz-osx-font-smoothing: grayscale;
+      -webkit-font-smoothing: antialiased;
+      margin: 0;
+      padding: 0;
+      position: fixed;
+      width: 100%;
+      max-width: 100%;
+      height: 100%;
+      max-height: 100%;
+      transform: translateZ(0);
+      text-rendering: optimizeLegibility;
+      overflow: hidden;
+      touch-action: manipulation;
+      -webkit-user-drag: none;
+      -ms-content-zooming: none;
+      word-wrap: break-word;
+      overscroll-behavior-y: none;
+      -webkit-text-size-adjust: none;
+      text-size-adjust: none
+    }
+
+    html {
+      font-family: var(--ion-font-family)
+    }
+
+    *,
+    :before,
+    :after {
+      box-sizing: border-box;
+      border-width: 0;
+      border-style: solid;
+      border-color: #e5e7eb
+    }
+
+    :before,
+    :after {
+      --tw-content: ""
+    }
+
+    html {
+      line-height: 1.5;
+      -webkit-text-size-adjust: 100%;
+      tab-size: 4;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", Segoe UI Symbol, "Noto Color Emoji"
+    }
+
+    body {
+      margin: 0;
+      line-height: inherit
+    }
+
+    *,
+    :before,
+    :after {
+      --tw-translate-x: 0;
+      --tw-translate-y: 0;
+      --tw-rotate: 0;
+      --tw-skew-x: 0;
+      --tw-skew-y: 0;
+      --tw-scale-x: 1;
+      --tw-scale-y: 1;
+      --tw-pan-x: ;
+      --tw-pan-y: ;
+      --tw-pinch-zoom: ;
+      --tw-scroll-snap-strictness: proximity;
+      --tw-ordinal: ;
+      --tw-slashed-zero: ;
+      --tw-numeric-figure: ;
+      --tw-numeric-spacing: ;
+      --tw-numeric-fraction: ;
+      --tw-ring-inset: ;
+      --tw-ring-offset-width: 0px;
+      --tw-ring-offset-color: #fff;
+      --tw-ring-color: rgb(59 130 246 / .5);
+      --tw-ring-offset-shadow: 0 0 #0000;
+      --tw-ring-shadow: 0 0 #0000;
+      --tw-shadow: 0 0 #0000;
+      --tw-shadow-colored: 0 0 #0000;
+      --tw-blur: ;
+      --tw-brightness: ;
+      --tw-contrast: ;
+      --tw-grayscale: ;
+      --tw-hue-rotate: ;
+      --tw-invert: ;
+      --tw-saturate: ;
+      --tw-sepia: ;
+      --tw-drop-shadow: ;
+      --tw-backdrop-blur: ;
+      --tw-backdrop-brightness: ;
+      --tw-backdrop-contrast: ;
+      --tw-backdrop-grayscale: ;
+      --tw-backdrop-hue-rotate: ;
+      --tw-backdrop-invert: ;
+      --tw-backdrop-opacity: ;
+      --tw-backdrop-saturate: ;
+      --tw-backdrop-sepia:
+    }
+
+    @font-face {
+      font-family: Inter;
+      src: local("Inter"), url(a73db89c43e44ca8f5e0.0b1aaf81e623ebe8.ttf) format("ttf")
+    }
+
+    :root {
+      --toastify-color-light: #fff;
+      --toastify-color-dark: #121212;
+      --toastify-color-info: #3498db;
+      --toastify-color-success: #07bc0c;
+      --toastify-color-warning: #f1c40f;
+      --toastify-color-error: #e74c3c;
+      --toastify-color-transparent: rgba(255, 255, 255, .7);
+      --toastify-icon-color-info: var(--toastify-color-info);
+      --toastify-icon-color-success: var(--toastify-color-success);
+      --toastify-icon-color-warning: var(--toastify-color-warning);
+      --toastify-icon-color-error: var(--toastify-color-error);
+      --toastify-toast-width: 320px;
+      --toastify-toast-background: #fff;
+      --toastify-toast-min-height: 64px;
+      --toastify-toast-max-height: 800px;
+      --toastify-font-family: sans-serif;
+      --toastify-z-index: 9999;
+      --toastify-text-color-light: #757575;
+      --toastify-text-color-dark: #fff;
+      --toastify-text-color-info: #fff;
+      --toastify-text-color-success: #fff;
+      --toastify-text-color-warning: #fff;
+      --toastify-text-color-error: #fff;
+      --toastify-spinner-color: #616161;
+      --toastify-spinner-color-empty-area: #e0e0e0;
+      --toastify-color-progress-light: linear-gradient(to right, #4cd964, #5ac8fa, #007aff, #34aadc, #5856d6, #ff2d55);
+      --toastify-color-progress-dark: #bb86fc;
+      --toastify-color-progress-info: var(--toastify-color-info);
+      --toastify-color-progress-success: var(--toastify-color-success);
+      --toastify-color-progress-warning: var(--toastify-color-warning);
+      --toastify-color-progress-error: var(--toastify-color-error)
+    }
+
+    :root {
+      --bs-blue: #0d6efd;
+      --bs-indigo: #6610f2;
+      --bs-purple: #6f42c1;
+      --bs-pink: #d63384;
+      --bs-red: #dc3545;
+      --bs-orange: #fd7e14;
+      --bs-yellow: #ffc107;
+      --bs-green: #198754;
+      --bs-teal: #20c997;
+      --bs-cyan: #0dcaf0;
+      --bs-white: #fff;
+      --bs-gray: #6c757d;
+      --bs-gray-dark: #343a40;
+      --bs-gray-100: #f8f9fa;
+      --bs-gray-200: #e9ecef;
+      --bs-gray-300: #dee2e6;
+      --bs-gray-400: #ced4da;
+      --bs-gray-500: #adb5bd;
+      --bs-gray-600: #6c757d;
+      --bs-gray-700: #495057;
+      --bs-gray-800: #343a40;
+      --bs-gray-900: #212529;
+      --bs-primary: #0d6efd;
+      --bs-secondary: #6c757d;
+      --bs-success: #198754;
+      --bs-info: #0dcaf0;
+      --bs-warning: #ffc107;
+      --bs-danger: #dc3545;
+      --bs-light: #f8f9fa;
+      --bs-dark: #212529;
+      --bs-primary-rgb: 13, 110, 253;
+      --bs-secondary-rgb: 108, 117, 125;
+      --bs-success-rgb: 25, 135, 84;
+      --bs-info-rgb: 13, 202, 240;
+      --bs-warning-rgb: 255, 193, 7;
+      --bs-danger-rgb: 220, 53, 69;
+      --bs-light-rgb: 248, 249, 250;
+      --bs-dark-rgb: 33, 37, 41;
+      --bs-white-rgb: 255, 255, 255;
+      --bs-black-rgb: 0, 0, 0;
+      --bs-body-color-rgb: 33, 37, 41;
+      --bs-body-bg-rgb: 255, 255, 255;
+      --bs-font-sans-serif: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+      --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --bs-gradient: linear-gradient(180deg, rgba(255, 255, 255, .15), rgba(255, 255, 255, 0));
+      --bs-body-font-family: var(--bs-font-sans-serif);
+      --bs-body-font-size: 1rem;
+      --bs-body-font-weight: 400;
+      --bs-body-line-height: 1.5;
+      --bs-body-color: #212529;
+      --bs-body-bg: #fff
+    }
+
+    *,
+    *:before,
+    *:after {
+      box-sizing: border-box
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      :root {
+        scroll-behavior: smooth
+      }
+    }
+
+    body {
+      margin: 0;
+      font-family: var(--bs-body-font-family);
+      font-size: var(--bs-body-font-size);
+      font-weight: var(--bs-body-font-weight);
+      line-height: var(--bs-body-line-height);
+      color: var(--bs-body-color);
+      text-align: var(--bs-body-text-align);
+      background-color: var(--bs-body-bg);
+      -webkit-text-size-adjust: 100%;
+      -webkit-tap-highlight-color: rgba(0, 0, 0, 0)
+    }
+
+    :root {
+      --swiper-theme-color: #007aff
+    }
+
+    :root {
+      --ion-color-primary: #3e3ee0;
+      --ion-color-primary-rgb: 62, 62, 224;
+      --ion-color-primary-contrast: #ffffff;
+      --ion-color-primary-contrast-rgb: 255, 255, 255;
+      --ion-color-primary-shade: #3737c5;
+      --ion-color-primary-tint: #5151e3;
+      --ion-color-secondary: #0066ff;
+      --ion-color-secondary-rgb: 0, 102, 255;
+      --ion-color-secondary-contrast: #ffffff;
+      --ion-color-secondary-contrast-rgb: 255, 255, 255;
+      --ion-color-secondary-shade: #005ae0;
+      --ion-color-secondary-tint: #1a75ff;
+      --ion-color-tertiary: #8b18ff;
+      --ion-color-tertiary-rgb: 139, 24, 255;
+      --ion-color-tertiary-contrast: #ffffff;
+      --ion-color-tertiary-contrast-rgb: 255, 255, 255;
+      --ion-color-tertiary-shade: #7a15e0;
+      --ion-color-tertiary-tint: #972fff;
+      --ion-color-success: #54ff6f;
+      --ion-color-success-rgb: 84, 255, 111;
+      --ion-color-success-contrast: #000000;
+      --ion-color-success-contrast-rgb: 0, 0, 0;
+      --ion-color-success-shade: #4ae062;
+      --ion-color-success-tint: #65ff7d;
+      --ion-color-warning: #faff00;
+      --ion-color-warning-rgb: 250, 255, 0;
+      --ion-color-warning-contrast: #000000;
+      --ion-color-warning-contrast-rgb: 0, 0, 0;
+      --ion-color-warning-shade: #dce000;
+      --ion-color-warning-tint: #fbff1a;
+      --ion-color-danger: #ff5e5e;
+      --ion-color-danger-rgb: 255, 94, 94;
+      --ion-color-danger-contrast: #000000;
+      --ion-color-danger-contrast-rgb: 0, 0, 0;
+      --ion-color-danger-shade: #e05353;
+      --ion-color-danger-tint: #ff6e6e;
+      --ion-color-dark: #141414;
+      --ion-color-dark-rgb: 20, 20, 20;
+      --ion-color-dark-contrast: #ffffff;
+      --ion-color-dark-contrast-rgb: 255, 255, 255;
+      --ion-color-dark-shade: #121212;
+      --ion-color-dark-tint: #2c2c2c;
+      --ion-color-medium: #2d3752;
+      --ion-color-medium-rgb: 45, 55, 82;
+      --ion-color-medium-contrast: #f6f9ff;
+      --ion-color-medium-contrast-rgb: 246, 249, 255;
+      --ion-color-medium-shade: #1b2131;
+      --ion-color-medium-tint: #3f4d73;
+      --ion-color-light: #ffffff;
+      --ion-color-light-rgb: 255, 255, 255;
+      --ion-color-light-contrast: #333333;
+      --ion-color-light-contrast-rgb: 51, 51, 51;
+      --ion-color-light-shade: #e0e0e0;
+      --ion-color-light-tint: #ffffff;
+      --ion-color-success-on-light: #048a19;
+      --ion-color-success-rgb-on-light: 4, 138, 25;
+      --ion-color-success-contrast-on-light: 000000;
+      --ion-color-success-contrast-rgb-on-light: 0, 0, 0;
+      --ion-color-danger-on-light: #e41313;
+      --ion-color-danger-rgb-on-light: 228, 19, 19;
+      --ion-color-danger-contrast-on-light: 000000;
+      --ion-color-danger-contrast-rgb-on-light: 0, 0, 0;
+      --ion-background-color: #141414;
+      --ion-background-color-rgb: 20, 20, 20;
+      --ion-text-color: #ffffff;
+      --ion-text-color-rgb: 255, 255, 255;
+      --ion-border-color: #ffffff0d;
+      --ion-color-step-50: #202020;
+      --ion-color-step-100: #2c2c2c;
+      --ion-color-step-150: #373737;
+      --ion-color-step-200: #434343;
+      --ion-color-step-250: #4f4f4f;
+      --ion-color-step-300: #5b5b5b;
+      --ion-color-step-350: #666666;
+      --ion-color-step-400: #727272;
+      --ion-color-step-450: #7e7e7e;
+      --ion-color-step-500: #8a8a8a;
+      --ion-color-step-550: #959595;
+      --ion-color-step-600: #a1a1a1;
+      --ion-color-step-650: #adadad;
+      --ion-color-step-700: #b9b9b9;
+      --ion-color-step-750: #c4c4c4;
+      --ion-color-step-800: #d0d0d0;
+      --ion-color-step-850: #dcdcdc;
+      --ion-color-step-900: #e8e8e8;
+      --ion-color-step-950: #f3f3f3;
+      --ion-item-background: #272727;
+      --ion-toolbar-background: #3d3d3d;
+      --ion-tab-bar-background: #3d3d3d;
+      --ion-card-background: #272727;
+      --card-shadow: -4px 4px 8px rgba(0, 0, 0, .12);
+      --box-shadow-1: 0px 4px 4px rgba(0, 0, 0, .25);
+      --box-shadow-2: 0px -1px 8px rgba(0, 0, 0, .12);
+      --gradient-1: linear-gradient(180deg, #0404ce 0%, #682efb 51.56%, #ae60fd 100%);
+      --gradient-2: linear-gradient(180deg, #d460fd 0%, #a12efb 50%, #6904ce 100%);
+      --gradient-3: linear-gradient(180deg, #42ded5 0%, #67a4dd 50%, #0066ff 100%);
+      --gradient-4: linear-gradient(180deg, #ffdd64 0%, #bdff00 100%);
+      --gradient-5: linear-gradient(180deg, #ffa945 0%, #ffd600 100%);
+      --gradient-6: linear-gradient(180deg, #ffdd64 0%, #bdff00 100%), rgba(255, 255, 255, .5);
+      --gradient-7: linear-gradient(180deg, #ffa945 0%, #ffd600 100%), linear-gradient(180deg, #ffdd64 0%, #bdff00 100%), rgba(255, 255, 255, .5);
+      --gradient-8: linear-gradient(180deg, #42ded5 0%, #67a4dd 50%, #0066ff 100%, #0066ff 100%), #ffffff;
+      --gradient-9: linear-gradient(180deg, #e736a0 0%, #8844ee 64.06%, #590cf3 100%)
+    }
+
+    .dot-flashing {
+      position: relative;
+      width: 10px;
+      height: 10px;
+      display: inline-flex
+    }
+
+    .dot-flashing span {
+      display: block;
+      width: 10px;
+      height: 10px;
+      border-radius: 5px;
+      background-color: var(--ion-text-color);
+      animation: dotFlashing 1.3s infinite ease-in-out alternate;
+      animation-delay: .1s
+    }
+
+    .dot-flashing:before,
+    .dot-flashing:after {
+      content: "";
+      display: inline-block;
+      position: absolute;
+      top: 0;
+      width: 10px;
+      height: 10px;
+      border-radius: 5px;
+      animation: dotFlashing 1.3s infinite ease-in-out alternate
+    }
+
+    .dot-flashing:before {
+      left: -15px;
+      background-color: var(--ion-text-color);
+      animation-delay: 0s
+    }
+
+    .dot-flashing:after {
+      left: 15px;
+      background-color: var(--ion-text-color);
+      animation-delay: .2s
+    }
+
+    @keyframes dotFlashing {
+      20% {
+        transform: translateY(-50%)
+      }
+
+      50% {
+        transform: translateY(50%)
+      }
+
+      75% {
+        transform: translateY(-25%)
+      }
+
+      90% {
+        transform: translate(0)
+      }
+
+      to {
+        transform: translate(0)
+      }
+    }
+
+    :root {
+      --ion-font-family: "Inter", sans-serif
+    }
+
+    html:not(.hydrated) body {
+      display: block
+    }
+
+    html,
+    body {
+      font-size: 16px;
+      font-family: var(--ion-font-family);
+      background-color: var(--ion-background-color);
+      color: var(--ion-text-color)
+    }
+  </style>
+  <link rel="stylesheet" href="styles.594c1a956286d817.css" media="print" onload="this.media='all'"><noscript>
+    <link rel="stylesheet" href="styles.594c1a956286d817.css"></noscript>
+</head>
+
+<body style="background-color: #141414;">
+  <div id="mainLoader" style="position: fixed;top: 50%;left: 50%;transform: translate(-50%,-50%);">
+    <style>
+      .dot-flashing {
+        position: relative;
+        width: 10px;
+        height: 10px;
+        display: inline-flex;
+      }
+
+      .dot-flashing span {
+        display: block;
+        width: 10px;
+        height: 10px;
+        border-radius: 5px;
+        background-color: #faff00;
+        animation: dotFlashing 1.3s infinite ease-in-out alternate;
+        animation-delay: 0.1s;
+      }
+
+      .dot-flashing::before,
+      .dot-flashing::after {
+        content: "";
+        display: inline-block;
+        position: absolute;
+        top: 0;
+        width: 10px;
+        height: 10px;
+        border-radius: 5px;
+        animation: dotFlashing 1.3s infinite ease-in-out alternate;
+      }
+
+      .dot-flashing::before {
+        left: -15px;
+        background-color: #ff5e5e;
+        animation-delay: 0s;
+      }
+
+      .dot-flashing::after {
+        left: 15px;
+        background-color: #54ff6f;
+        animation-delay: 0.2s;
+      }
+
+      @keyframes dotFlashing {
+        20% {
+          transform: translate3d(0, -50%, 0);
+        }
+
+        50% {
+          transform: translate3d(0, 50%, 0);
+        }
+
+        75% {
+          transform: translate3d(0, -25%, 0);
+        }
+
+        90% {
+          transform: translate3d(0, 0%, 0);
+        }
+
+        100% {
+          transform: translate3d(0, 0%, 0);
+        }
+      }
+    </style>
+    <span class="dot-flashing"><span></span></span>
+  </div>
+  <app-root></app-root>
+  <noscript>Please enable JavaScript to continue using this application.</noscript>
+  <!-- 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/hmac-sha256.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/components/enc-base64-min.js"></script> -->
+
+  <script src="runtime.0261192726724005.js" type="module"></script>
+  <script src="polyfills.3788c458c3a6bf5d.js" type="module"></script>
+  <script src="scripts.abbb37f329463b12.js" defer></script>
+  <script src="main.8b8ecd13f576ebed.js" type="module"></script>
+
+
+</body>
+
+</html>
