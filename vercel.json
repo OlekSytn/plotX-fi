@@ -1,5 +1,6 @@
 {
     "redirects": [
-      { "source": "/", "destination": "/sign-in", "permanent": false }
+      { "source": "/", "destination": "/sign-in", "permanent": false },
+      { "source": "/onboarding", "destination": "/sign-in", "permanent": false }
     ]
   }
